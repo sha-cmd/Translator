@@ -1,0 +1,9 @@
+pdf2image~=1.14.0
+doc2text~=0.2.4
+nltk~=3.5
+Unidecode~=1.2.0
+requests~=2.25.1
+docx2txt~=0.8
+PyPDF2~=1.26.0
+textract~=1.6.3
+setuptools~=54.0.0
