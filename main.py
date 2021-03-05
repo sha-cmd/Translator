@@ -12,6 +12,7 @@ into a text file.
 
 VERSION = "0.0.1"
 
+import io
 import os
 import tempfile
 from glob import glob
@@ -56,9 +57,9 @@ def traduction(dr, ext, lg):
             complete_name = (filename + ".txt")  # Output files containing traduction
 
             # Save it on the disk
-            file = open(complete_name, "w")
-            file.write(str(result.text))
-            file.close()
+            with io.open(complete_name, "w", encoding="utf-8") as f:
+                f.write(result.text)
+                f.close()
 
     else:
         # Translate some files
@@ -68,9 +69,9 @@ def traduction(dr, ext, lg):
             complete_name = (filename + ".txt")  # Output files containing traduction
 
             # Save it on the disk
-            file = open(complete_name, "w")
-            file.write(str(result.text))
-            file.close()
+            with io.open(complete_name, "w", encoding="utf-8") as f:
+                f.write(result.text)
+                f.close()
 
 def main():
     print('Program of traduction from any spell to french in one click')
