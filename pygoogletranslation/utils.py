@@ -1,4 +1,5 @@
 """A conversion module for googletrans"""
+import io
 import json
 import nltk
 import re
@@ -115,15 +116,20 @@ def format_translation(translated):
 
 
 def fix_trans_error(translated):
-    translated = [x for x in translated if x != None]
+   # try:
+    translated = [x for x in translated if x != None] if translated is not None else []
+   # except Exception as e:
+    with io.open('translated.txt', "w", encoding="utf-8") as f:
+        f.write(str(translated))
+        f.close()
     if len(translated) > 0:
-        if len(translated[0]) > 2:
-            if len(translated[0][2]) > 1:
-                if len(translated[0][2][1]) > 0:
-                    if len(translated[0][2][1][0]) > 0:
-                        if len(translated[0][2][1][0][0]) > 5:
-                            if len(translated[0][2][1][0][0][5]) > 0:
-                                if len(translated[0][2][1][0][0][5][0]) > 0:
+        if translated[0] is not None and len(translated[0]) > 2:
+            if translated[0][2] is not None and len(translated[0][2]) > 1:
+                if translated[0][2][1] is not None and len(translated[0][2][1]) > 0:
+                    if translated[0][2][1][0] is not None and len(translated[0][2][1][0]) > 0:
+                        if translated[0][2][1][0][0] is not None and len(translated[0][2][1][0][0]) > 5:
+                            if translated[0][2][1][0][0][5] is not None and len(translated[0][2][1][0][0][5]) > 0:
+                                if translated[0][2][1][0][0][5][0] is not None and len(translated[0][2][1][0][0][5][0]) > 0:
                                     text = translated[0][2][1][0][0][5][0][0]
                                 else:
                                     text = translated[0][2][1][0][0][5][0]
