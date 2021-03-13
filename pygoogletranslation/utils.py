@@ -63,11 +63,26 @@ def format_response(a):
         if flag:
             li_filter.append(_b)
     fi_data = str(''.join(li_filter)).replace('"[', '[').replace(']"', ']').replace('\\n', '').replace('\\','')
-    #fi_data = re.sub(r'\[\d*\]', r'', fi_data) # For the sake of deleting footnotes in result
-    #print(fi_data.split('pygoogletranslation')[1].replace('"[', '[').replace(']"', ']').replace(' "','"').replace(',,',','))
-    li_data = json.loads(fi_data.split('pygoogletranslation')[1].replace('"[', '[').replace(']"', ']').replace(' "','"'))
-    return li_data
-    
+    # This lines for debugging
+    # with io.open('fi_data.txt', "w", encoding="utf-8") as f:
+    #     f.write(str(fi_data))
+    #     f.close()
+
+    li_data_formatted_text = fi_data.split('pygoogletranslation')[1].replace('"[', '[').replace(']"', ']').replace(' "', '"')
+
+    try:
+        li_data = json.loads(li_data_formatted_text)
+        return li_data
+
+    except Exception as e:
+        # This line for debugging
+        # print('li_data : ' + li_data_formatted_text)
+        # with io.open('li_data.txt', "w", encoding="utf-8") as f:
+        #     f.write(str(li_data_formatted_text) + '\n' + e)
+        #     f.close()
+        # print(e)
+        pass
+
 def tokenize_sentence(text):
     text_len = 0
     token_text = ''
