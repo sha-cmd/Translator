@@ -271,8 +271,7 @@ class Translator:
             text = textract.process(file, method='tesseract')
             text = text.decode("utf-8")
         else:
-
-            raise FileNotFoundError('unsupported file format .{}.'.format(file.split('.'))[len(file.split('.') - 1)])
+            raise FileNotFoundError('unsupported file format .{}.'.format(file.split('.'))[len(file.split('.')) - 1])
         text = text.replace('"', '')
         text = text.replace("'", "")
         text = text.replace("“", "")
